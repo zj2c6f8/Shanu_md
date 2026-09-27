@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>𝐍 𝐈 𝐌 𝐀  𝐎𝐅𝐂 .𝐋𝐊  𝐖𝐏 📁</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
+body{background:#080710;color:#fff;min-height:100vh}
+.ios{background:rgba(255,255,255,.05);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,.1);border-radius:15px;padding:12px;margin-bottom:10px}
+#log{position:fixed;top:0;left:0;width:100%;height:100%;background:#080710;z-index:99;display:flex;align-items:center;justify-content:center;padding:20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:10px;margin:10px}
+.title{color:#00d4ff;font-weight:bold;font-size:1rem}
+.drawer{position:fixed;top:0;left:-250px;width:230px;height:100%;background:#0c0c14;z-index:100;transition:.3s;padding:15px;display:flex;flex-direction:column;gap:8px}
+.drawer.open{left:0}
+.item{padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.05);cursor:pointer;font-size:.85rem}
+.sec{display:none}.sec.active{display:block}
+.group{display:flex;gap:5px;margin:10px 0}
+input{flex:1;background:#000;border:1px solid #333;padding:8px;border-radius:8px;color:#fff;font-size:.8rem}
+.btn{background:#00d4ff;border:none;color:#000;padding:8px 14px;border-radius:8px;font-weight:bold;cursor:pointer;font-size:.8rem}
+.chat{height:220px;overflow-y:auto;display:flex;flex-direction:column;gap:5px}
+.msg{max-width:85%;padding:6px 10px;border-radius:8px;font-size:.8rem}
+.msg.bot{background:#222;align-self:flex-start}
+.msg.user{background:#ff007f;align-self:flex-end}
+.dot{width:8px;height:8px;background:#00ff66;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+
+<div id="log">
+    <div class="ios" style="width:100%;max-width:300px;text-align:center;">
+        <div class="title" style="margin-bottom:10px;">𝐍 𝐈 𝐌 𝐀  𝐎𝐅𝐂 .𝐋𝐊</div>
+        <input type="email" id="lE" placeholder="Gmail Address..." style="width:100%;margin-bottom:8px;">
+        <button class="btn" style="width:100%;" onclick="login()">Login</button>
+    </div>
+</div>
+
+<header class="ios">
+    <button class="btn" onclick="drw()"><i class="fa-solid fa-bars"></i></button>
+    <div class="title">𝐍 𝐈 𝐌 𝐀  𝐎𝐅𝐂 .𝐋𝐊</div>
+    <div id="clk" style="font-size:.75rem;color:#00d4ff;">00:00:00</div>
+</header>
+
+<div class="drawer" id="drw">
+    <div style="display:flex;justify-content:space-between;color:#00d4ff;"><span>MENU TAB</span><span onclick="drw()">✕</span></div>
+    <div class="item" onclick="nav('dash')"><i class="fa-solid fa-gauge"></i> Pair Dash</div>
+    <div class="item" onclick="nav('prof')"><i class="fa-solid fa-user"></i> Profile</div>
+    <div class="item" onclick="nav('feat')"><i class="fa-solid fa-robot"></i> Features</div>
+    <div class="item" onclick="nav('ai')"><i class="fa-solid fa-droplet"></i> AI Chat 💧</div>
+    <div class="item" onclick="nav('tt')"><i class="fa-solid fa-fire"></i> TikTok DL</div>
+    <div class="item" onclick="nav('ff')"><i class="fa-solid fa-explosion"></i> Free Fire</div>
+    <div class="item" onclick="nav('own')"><i class="fa-solid fa-crown"></i> Owners</div>
+</div>
+
+<div style="padding:0 10px;max-width:500px;margin:0 auto;">
+
+    <div id="dash" class="sec active ios" style="text-align:center;">
+        <h3>WhatsApp Bot Pairing</h3>
+        <div class="group"><input type="text" id="pN" placeholder="947XXXXXXXX"><button class="btn" onclick="pair()">Pair</button></div>
+        <div id="pR" style="color:#00ff66;font-weight:bold;"></div>
+    </div>
+
+    <div id="prof" class="sec ios">
+        <img id="pI" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" style="width:50px;height:50px;border-radius:50%;margin:0 auto;display:block;">
+        <input type="text" id="uN" value="User_Guest" style="width:100%;margin:8px 0;">
+        <input type="text" id="iU" placeholder="Img URL..." style="width:100%;margin-bottom:8px;">
+        <button class="btn" style="width:100%;" onclick="saveP()">Save</button>
+    </div>
+
+    <div id="feat" class="sec ios">
+        <h4>Bot Features</h4>
+        <p style="font-size:.75rem;color:#aaa;margin-top:5px;">• Auto Downloader (TT, YT, FB)<br>• Group Protection & Anti-link<br>• Sticker Generator<br>• AI Integration</p>
+    </div>
+
+    <div id="ai" class="sec ios">
+        <div class="chat" id="cB"><div class="msg bot">𝐇𝐄𝐋𝐎𝐎 කොහොමද ඔයාට අද දවස හොදයිද ඔයා කාලද ඉන්නෙ 🍎</div></div>
+        <div class="group"><input type="text" id="aI" placeholder="Ask AI..."><button class="btn" onclick="sendAI()">Send</button></div>
+    </div>
+
+    <div id="tt" class="sec ios">
+        <h4>TikTok Downloader</h4>
+        <div class="group"><input type="text" id="tU" placeholder="TikTok URL..."><button class="btn" onclick="dlTT()">Get</button></div>
+        <div id="tR"></div>
+    </div>
+
+    <div id="ff" class="sec ios">
+        <h4>Free Fire Stalk</h4>
+        <div class="group"><input type="text" id="fU" placeholder="UID..."><button class="btn" onclick="getFF()">Search</button></div>
+        <div id="fR"></div>
+    </div>
+
+    <div id="own" class="sec ios">
+        <h4>Owners</h4>
+        <p style="font-size:.8rem;margin-top:5px;">Bot Owner: <b>SHANU YAKUZA</b> <span class="dot"></span></p>
+        <p style="font-size:.8rem;margin-top:5px;">Site Owner: <b>NIMA / SITHUWA</b> <span class="dot"></span></p>
+    </div>
+
+    <div class="ios">
+        <h5 style="color:#00d4ff;">About</h5>
+        <p style="font-size:.7rem;color:#aaa;">NIMA OFC WP Bot system for high-speed automated services.</p>
+    </div>
+
+</div>
+
+<script>
+setInterval(()=>document.getElementById('clk').innerText=new Date().toLocaleTimeString(),1000);
+function drw(){document.getElementById('drw').classList.toggle('open')}
+function nav(s){document.querySelectorAll('.sec').forEach(e=>e.classList.remove('active'));document.getElementById(s).classList.add('active');drw()}
+function login(){let e=document.getElementById('lE').value;if(e.includes('@')){document.getElementById('uN').value=e.split('@')[0];document.getElementById('log').style.display='none'}}
+function saveP(){let i=document.getElementById('iU').value;if(i)document.getElementById('pI').src=i;alert('Saved!')}
+function pair(){let n=document.getElementById('pN').value;if(n)document.getElementById('pR').innerText='CODE: '+Math.random().toString(36).substring(2,6).toUpperCase()+'-'+Math.random().toString(36).substring(2,6).toUpperCase()}
+async function sendAI(){
+    let i=document.getElementById('aI'),b=document.getElementById('cB'),v=i.value;if(!v)return;
+    b.innerHTML+=`<div class="msg user">${v}</div>`;i.value='';
+    if(v.toLowerCase().includes("කව්ද")&&(v.toLowerCase().includes("හදුවේ")||v.toLowerCase().includes("හැදුවේ")||v.toLowerCase().includes("owner"))){
+        b.innerHTML+=`<div class="msg bot">𝐍 𝐈 𝐌 𝐀  තමා මාව සහ මෙම සයිට් එක නිර්මාණය කරේ🔥</div>`;
+    }else{
+        try{let r=await fetch(`https://api.vyture.com/ai/chatgpt?prompt=${encodeURIComponent(v)}`),d=await r.json();b.innerHTML+=`<div class="msg bot">${d.result||'Error'}</div>`;}
+        catch(e){b.innerHTML+=`<div class="msg bot">Error!</div>`;}
+    }
+    b.scrollTop=b.scrollHeight;
+}
+async function dlTT(){
+    let u=document.getElementById('tU').value,r=document.getElementById('tR');if(!u)return;
+    try{let res=await fetch(`https://api.tiklydown.eu.org/api/download?url=${encodeURIComponent(u)}`),d=await res.json();
+    r.innerHTML=`<video src="${d.video.noWatermark}" controls style="width:100%;border-radius:8px;margin-top:5px;"></video>`;}
+    catch(e){r.innerText='Error!';}
+}
+async function getFF(){
+    let u=document.getElementById('fU').value,r=document.getElementById('fR');if(!u)return;
+    r.innerHTML=`<img src="https://api.lolhuman.xyz/api/freefire/${u}?apikey=Ganesha" style="width:100%;border-radius:8px;margin-top:5px;" onerror="this.src='';this.alt='Active UID: ${u}'">`;
+}
+</script>
+</body>
+  </html>
